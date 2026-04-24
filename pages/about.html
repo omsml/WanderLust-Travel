@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — WanderLust Travel</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ─── PAGE-SPECIFIC ─── */
+    .page-hero-bg { background-image: url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1600&q=80'); }
+    .mission-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; max-width:1200px; }
+    .mission-img { border-radius:var(--radius-xl); overflow:hidden; height:500px; box-shadow:var(--shadow-deep); }
+    .mission-img img { width:100%; height:100%; object-fit:cover; }
+    .values-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; }
+    .value-card { background:var(--white); border-radius:var(--radius); padding:2rem; text-align:center; box-shadow:var(--shadow-soft); transition:transform .3s; }
+    .value-card:hover { transform:translateY(-8px); }
+    .value-icon { font-size:2.5rem; margin-bottom:1rem; }
+    .value-card h3 { font-family:var(--font-display); font-size:1.1rem; margin-bottom:.5rem; }
+    .value-card p { color:var(--muted); font-size:.88rem; line-height:1.6; }
+    .team-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; }
+    .team-card { text-align:center; }
+    .team-avatar { width:120px; height:120px; border-radius:50%; object-fit:cover; margin:0 auto 1rem; border:4px solid var(--white); box-shadow:var(--shadow-soft); }
+    .team-name { font-family:var(--font-display); font-size:1.1rem; font-weight:700; }
+    .team-role { color:var(--coral); font-size:.88rem; font-weight:600; margin-top:.25rem; }
+    .team-bio  { color:var(--muted); font-size:.85rem; margin-top:.5rem; line-height:1.6; }
+    .timeline { max-width:800px; margin:0 auto; position:relative; }
+    .timeline::before { content:''; position:absolute; left:50%; top:0; bottom:0; width:2px; background:var(--grad1); transform:translateX(-50%); }
+    .tl-item { display:flex; gap:2rem; margin-bottom:3rem; align-items:flex-start; }
+    .tl-item:nth-child(even) { flex-direction:row-reverse; }
+    .tl-content { flex:1; background:var(--white); border-radius:var(--radius); padding:1.5rem; box-shadow:var(--shadow-soft); }
+    .tl-content h3 { font-family:var(--font-display); font-size:1.1rem; color:var(--dark); }
+    .tl-content p  { color:var(--muted); font-size:.88rem; margin-top:.5rem; line-height:1.6; }
+    .tl-year { width:80px; text-align:center; flex-shrink:0; }
+    .tl-year span { background:var(--grad1); color:var(--white); padding:.4rem .8rem; border-radius:50px; font-weight:700; font-size:.9rem; }
+    .tl-item:nth-child(even) .tl-year { text-align:center; }
+    @media(max-width:1024px){ .values-grid,.team-grid{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:768px){ .mission-grid{grid-template-columns:1fr; gap:2rem;} .timeline::before{left:16px;} .tl-item,.tl-item:nth-child(even){flex-direction:column;} .tl-year{text-align:left;} }
+    @media(max-width:480px){ .values-grid,.team-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+  <img src="https://www.wanderlustmagazine.com/wp-content/uploads/2023/09/wanderlust-logo.svg" 
+       alt="WanderLust" 
+       style="height: 40px; vertical-align: middle;">
+</a>
+  <div class="nav-links" id="navLinks">
+    <a href="../index.html">Home</a>
+    <a href="about.html" class="active">About Us</a>
+    <a href="destinations.html">Destinations</a>
+    <a href="packages.html">Packages</a>
+    <a href="contact.html">Contact</a>
+    <a href="packages.html" class="nav-cta">Book Now ✈</a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <span class="section-tag tag-coral">Our Story</span>
+    <h1 class="page-hero-title">About WanderLust</h1>
+    <p class="page-hero-sub">Passionate travelers, dedicated to crafting your perfect journey since 2006.</p>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="section">
+  <div class="mission-grid">
+    <div class="fade-up">
+      <span class="section-tag tag-coral">Who We Are</span>
+      <h2 class="section-title">More Than Just a<br><span>Travel Agency</span></h2>
+      <div class="divider"></div>
+      <p style="color:var(--muted);line-height:1.8;margin-top:1rem">WanderLust Travel was born from a simple belief: that travel has the power to transform lives. Founded in 2006 by a group of avid explorers, we've grown from a small boutique agency to one of India's most trusted travel brands — without ever losing our personal touch.</p>
+      <p style="color:var(--muted);line-height:1.8;margin-top:1rem">We don't just book holidays. We craft experiences that become the stories you tell for years. From spontaneous solo adventures to meticulously planned family vacations, every trip we design carries the same DNA: authenticity, care, and a deep love for this beautiful world.</p>
+      <div style="display:flex;gap:2rem;margin-top:2rem;flex-wrap:wrap">
+        <div><div class="stat-num" data-target="15000" data-suffix="+" style="font-size:1.8rem">0</div><div style="color:var(--muted);font-size:.85rem">Happy Travelers</div></div>
+        <div><div class="stat-num" data-target="120" data-suffix="+" style="font-size:1.8rem">0</div><div style="color:var(--muted);font-size:.85rem">Destinations</div></div>
+        <div><div class="stat-num" data-target="18" data-suffix=" yrs" style="font-size:1.8rem">0</div><div style="color:var(--muted);font-size:.85rem">Experience</div></div>
+      </div>
+    </div>
+    <div class="mission-img fade-up fade-up-d2">
+      <img src="https://images.unsplash.com/photo-1522199710521-72d69614c702?w=800&q=80" alt="Travel Team">
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section" style="background:var(--white)">
+  <div class="section-header centered">
+    <span class="section-tag tag-violet">What Drives Us</span>
+    <h2 class="section-title">Our Core <span>Values</span></h2>
+    <div class="divider centered"></div>
+  </div>
+  <div class="values-grid">
+    <div class="value-card fade-up">
+      <div class="value-icon">🌍</div>
+      <h3>Authenticity</h3>
+      <p>We design trips that immerse you in genuine local experiences — not tourist traps.</p>
+    </div>
+    <div class="value-card fade-up fade-up-d1">
+      <div class="value-icon">❤️</div>
+      <h3>Passion</h3>
+      <p>We're travelers ourselves. Every itinerary is crafted with the same love we bring to our own adventures.</p>
+    </div>
+    <div class="value-card fade-up fade-up-d2">
+      <div class="value-icon">🛡️</div>
+      <h3>Reliability</h3>
+      <p>From first enquiry to safe return, we're with you every step of the way, 24/7.</p>
+    </div>
+    <div class="value-card fade-up fade-up-d3">
+      <div class="value-icon">♻️</div>
+      <h3>Sustainability</h3>
+      <p>We partner with eco-conscious operators and promote responsible travel practices.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section">
+  <div class="section-header centered">
+    <span class="section-tag tag-ocean">The Humans</span>
+    <h2 class="section-title">Meet Our <span>Team</span></h2>
+    <div class="divider centered"></div>
+    <p class="section-sub">Passionate explorers who turn your travel dreams into reality.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card fade-up">
+      <img class="team-avatar" src="https://documents.iplt20.com/ipl/IPLHeadshot2026/2.png" alt="Founder & CEO">
+      <div class="team-name">Virat Kohli</div>
+      <div class="team-role">Founder & CEO</div>
+      <p class="team-bio">20+ years exploring 80 countries. Virat's vision guides every trip we create.</p>
+    </div>
+    <div class="team-card fade-up fade-up-d1">
+      <img class="team-avatar" src="https://documents.iplt20.com/ipl/IPLHeadshot2026/597.png">
+      <div class="team-name">Rajat Patidar</div>
+      <div class="team-role">Head of Operations</div>
+      <p class="team-bio">Masters in Hospitality, expert in luxury travel. Rajat ensures flawless execution.</p>
+    </div>
+    <div class="team-card fade-up fade-up-d2">
+      <img class="team-avatar" src="https://documents.iplt20.com/ipl/IPLHeadshot2026/636.png" alt="Senior Travel Expert">
+      <div class="team-name">Tim David</div>
+      <div class="team-role">Senior Travel Expert</div>
+      <p class="team-bio">Adventure specialist. From Kilimanjaro to the Amazon — Tim has been there.</p>
+    </div>
+    <div class="team-card fade-up fade-up-d3">
+      <img class="team-avatar" src="https://documents.iplt20.com/ipl/IPLHeadshot2026/371.png" alt="Customer Experience Lead">
+      <div class="team-name">Romario Shepherd</div>
+      <div class="team-role">Customer Experience Lead</div>
+      <p class="team-bio">Romario's obsession with detail ensures every client feels like a VIP.</p>
+    </div>
+    <div class="team-card fade-up fade-up-d4">
+      <img class="team-avatar" src="https://documents.iplt20.com/ipl/IPLHeadshot2026/1000.png">
+      <div class="team-name">Jitesh Sharma</div>
+      <div class="team-role">Digital Curator</div>
+      <p class="team-bio">Mapping unique experiences. Jitesh makes sure our digital content is as exciting as our trips.</p>
+    </div>
+    <div class="team-card fade-up fade-up-d5">
+      <img class="team-avatar" src="https://documents.iplt20.com/ipl/IPLHeadshot2026/36.png" alt="Travel Concierge">
+      <div class="team-name">Josh Hazlewood</div>
+      <div class="team-role">Travel Concierge</div>
+      <p class="team-bio">Your point of contact. Josh works 24/7 to solve problems on the go and enhance your journey.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section" style="background:linear-gradient(135deg,#0D1B2A,#1E2D40)">
+  <div class="section-header centered">
+    <span class="section-tag" style="background:rgba(255,90,95,.2);color:var(--coral)">Journey</span>
+    <h2 class="section-title" style="color:var(--white)">Our <span>Milestones</span></h2>
+    <div class="divider centered"></div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item fade-up">
+      <div class="tl-year"><span>2006</span></div>
+      <div class="tl-content"><h3>Founded in Bhubaneswar</h3><p>WanderLust opens its doors with a team of 5 passionate travelers and big dreams.</p></div>
+    </div>
+    <div class="tl-item fade-up fade-up-d1">
+      <div class="tl-year"><span>2010</span></div>
+      <div class="tl-content"><h3>1,000 Happy Travelers</h3><p>Reached our first major milestone and launched our European tour packages.</p></div>
+    </div>
+    <div class="tl-item fade-up fade-up-d2">
+      <div class="tl-year"><span>2015</span></div>
+      <div class="tl-content"><h3>Best Agency Award</h3><p>Recognized by the Indian Travel Awards as one of the top 10 travel agencies.</p></div>
+    </div>
+    <div class="tl-item fade-up fade-up-d3">
+      <div class="tl-year"><span>2020</span></div>
+      <div class="tl-content"><h3>Digital Transformation</h3><p>Launched our online booking platform and grew our team to 50+ professionals.</p></div>
+    </div>
+    <div class="tl-item fade-up">
+      <div class="tl-year"><span>2024</span></div>
+      <div class="tl-content"><h3>15,000+ Travelers & Counting</h3><p>Expanded to 120+ destinations with offices in 6 Indian cities.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+<div class="nav-logo">
+  <img src="https://www.wanderlustmagazine.com/wp-content/uploads/2023/09/wanderlust-logo.svg" 
+       alt="WanderLust" 
+       style="height: 40px; vertical-align: middle;">
+</div>
+      <p>Crafting unforgettable travel experiences since 2026. Your journey begins with us.</p>
+      <div class="footer-socials">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">📷</a>
+        <a href="#" aria-label="Twitter">𝕏</a>
+        <a href="#" aria-label="YouTube">▶</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Quick Links</h4><a href="../index.html">Home</a><a href="about.html">About Us</a><a href="destinations.html">Destinations</a><a href="packages.html">Packages</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Destinations</h4><a href="destinations.html">Bali</a><a href="destinations.html">Maldives</a><a href="destinations.html">Europe</a><a href="destinations.html">Dubai</a><a href="destinations.html">Japan</a></div>
+    <div class="footer-col"><h4>Newsletter</h4><p style="font-size:.88rem;margin-bottom:1rem;line-height:1.6">Get exclusive deals in your inbox.</p><div class="footer-newsletter"><input type="email" placeholder="your@email.com"><button>Subscribe →</button></div></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 WanderLust Travel. All rights reserved by omsml.</span><span>Privacy Policy · Terms</span></div>
+</footer>
+<button class="back-to-top">↑</button>
+<script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WanderLust Travel — Explore the World</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+ <a href="index.html" class="nav-logo">
+  <img src="https://www.wanderlustmagazine.com/wp-content/uploads/2023/09/wanderlust-logo.svg" 
+       alt="WanderLust" 
+       style="height: 40px; vertical-align: middle;">
+</a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html" class="active">Home</a>
+    <a href="pages/about.html">About Us</a>
+    <a href="pages/destinations.html">Destinations</a>
+    <a href="pages/packages.html">Packages</a>
+    <a href="pages/contact.html">Contact</a>
+    <a href="pages/packages.html" class="nav-cta">Book Now ✈</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO SLIDER -->
+<section class="hero-slider">
+  <div class="slide active" style="--bg:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80')">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="section-tag tag-coral">✦ Award-Winning Travel Agency</span>
+      <h1 class="hero-title">Discover the <span>World's</span><br>Hidden Wonders</h1>
+      <p class="hero-sub">Handcrafted journeys to over 120 destinations. Your dream vacation, perfectly planned.</p>
+      <div class="hero-btns">
+        <a href="pages/destinations.html" class="btn btn-primary">Explore Destinations</a>
+        <a href="pages/packages.html" class="btn btn-outline">View Packages</a>
+      </div>
+    </div>
+  </div>
+  <div class="slide" style="--bg:url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80')">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="section-tag tag-ocean">✦ Summer Specials</span>
+      <h1 class="hero-title">Sail Into <span>Paradise</span><br>This Season</h1>
+      <p class="hero-sub">Exclusive beach escapes and island-hopping packages at unbeatable prices.</p>
+      <div class="hero-btns">
+        <a href="pages/packages.html" class="btn btn-primary">See Deals</a>
+        <a href="pages/contact.html" class="btn btn-outline">Enquire Now</a>
+      </div>
+    </div>
+  </div>
+  <div class="slide" style="--bg:url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=1600&q=80')">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="section-tag tag-mint">✦ Adventure Awaits</span>
+      <h1 class="hero-title">Trek Beyond<br>the <span>Ordinary</span></h1>
+      <p class="hero-sub">From Himalayan peaks to Amazon rainforests — adventure is just a booking away.</p>
+      <div class="hero-btns">
+        <a href="pages/packages.html" class="btn btn-primary">Adventure Packages</a>
+        <a href="pages/about.html" class="btn btn-outline">Our Story</a>
+      </div>
+    </div>
+  </div>
+  <button class="slider-prev">&#8249;</button>
+  <button class="slider-next">&#8250;</button>
+  <div class="slider-dots">
+    <span class="slider-dot active"></span>
+    <span class="slider-dot"></span>
+    <span class="slider-dot"></span>
+  </div>
+</section>
+
+<!-- SEARCH BAR -->
+<section class="search-bar-section">
+  <div class="search-bar-card">
+    <h3>Find Your Perfect Trip</h3>
+    <div class="search-form">
+      <div class="sf-group">
+        <label>🌍 Destination</label>
+        <input type="text" placeholder="Where do you want to go?" id="searchDest">
+      </div>
+      <div class="sf-group">
+        <label>📅 Check-in</label>
+        <input type="date" id="searchDate">
+      </div>
+      <div class="sf-group">
+        <label>👥 Travelers</label>
+        <select id="searchPax">
+          <option>1 Traveler</option>
+          <option>2 Travelers</option>
+          <option>3–4 Travelers</option>
+          <option>5+ Travelers</option>
+        </select>
+      </div>
+      <div class="sf-group">
+        <label>🏷️ Category</label>
+        <select id="searchCat">
+          <option>All Types</option>
+          <option>Beach</option>
+          <option>Adventure</option>
+          <option>Cultural</option>
+          <option>Luxury</option>
+        </select>
+      </div>
+      <button class="btn btn-primary sf-btn" onclick="window.location.href='pages/destinations.html'">Search</button>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat fade-up">
+    <div class="stat-num" data-target="15000" data-suffix="+">0</div>
+    <div class="stat-label">Happy Travelers</div>
+  </div>
+  <div class="stat fade-up fade-up-d1">
+    <div class="stat-num" data-target="120" data-suffix="+">0</div>
+    <div class="stat-label">Destinations</div>
+  </div>
+  <div class="stat fade-up fade-up-d2">
+    <div class="stat-num" data-target="98" data-suffix="%">0</div>
+    <div class="stat-label">Satisfaction Rate</div>
+  </div>
+  <div class="stat fade-up fade-up-d3">
+    <div class="stat-num" data-target="18" data-suffix="">0</div>
+    <div class="stat-label">Years of Experience</div>
+  </div>
+</div>
+
+<!-- FEATURED DESTINATIONS -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-tag tag-coral">Top Picks</span>
+    <h2 class="section-title">Featured <span>Destinations</span></h2>
+    <div class="divider"></div>
+    <p class="section-sub">Explore our most-loved destinations, curated by our travel experts.</p>
+  </div>
+  <div class="dest-featured-grid">
+    <a href="pages/destinations.html" class="dest-card dest-card-large fade-up">
+      <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&q=80" alt="Bali">
+      <div class="dest-card-overlay">
+        <span class="badge badge-coral">Most Popular</span>
+        <h3>Bali, Indonesia</h3>
+        <p>🌺 Temples · Beaches · Rice Terraces</p>
+        <span class="dest-from">From ₹45,000</span>
+      </div>
+    </a>
+    <div class="dest-small-stack">
+      <a href="pages/destinations.html" class="dest-card fade-up fade-up-d1">
+        <img src="https://images.unsplash.com/photo-1431274172761-fca41d930114?w=600&q=80" alt="Paris">
+        <div class="dest-card-overlay">
+          <h3>Paris, France</h3>
+          <p>🗼 Romance · Art · Cuisine</p>
+          <span class="dest-from">From ₹85,000</span>
+        </div>
+      </a>
+      <a href="pages/destinations.html" class="dest-card fade-up fade-up-d2">
+        <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=80" alt="Dubai">
+        <div class="dest-card-overlay">
+          <h3>Dubai, UAE</h3>
+          <p>🏙️ Luxury · Thrills · Desert</p>
+          <span class="dest-from">From ₹55,000</span>
+        </div>
+      </a>
+    </div>
+    <div class="dest-small-stack">
+      <a href="pages/destinations.html" class="dest-card fade-up fade-up-d3">
+        <img src="https://theozencollection.com/bolifushi/_next/image?url=https%3A%2F%2Ftoc-ucmsapi.theozencollection.com%2FTOC%2Fimages%2FpropertyImagesb2c09ed4-57ab-4341-ad24-8dd7ee1b945eblob.png&w=1920&q=75" alt="Maldives">
+        <div class="dest-card-overlay">
+          <h3>Maldives</h3>
+          <p>🐠 Overwater Villas · Snorkeling</p>
+          <span class="dest-from">From ₹1,10,000</span>
+        </div>
+      </a>
+      <a href="pages/destinations.html" class="dest-card fade-up fade-up-d4">
+        <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80" alt="Tokyo">
+        <div class="dest-card-overlay">
+          <h3>Tokyo, Japan</h3>
+          <p>⛩️ Culture · Neon · Sakura</p>
+          <span class="dest-from">From ₹95,000</span>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="text-center mt3">
+    <a href="pages/destinations.html" class="btn btn-secondary">View All Destinations →</a>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section why-section">
+  <div class="why-inner">
+    <div class="why-left fade-up">
+      <span class="section-tag tag-violet">Why WanderLust</span>
+      <h2 class="section-title">Travel Smarter,<br><span>Not Harder</span></h2>
+      <div class="divider"></div>
+      <p class="section-sub">We take care of every detail so all you have to do is enjoy the journey.</p>
+      <ul class="why-list mt2">
+        <li><div class="why-icon" style="background:var(--grad1)">✈️</div><div><strong>Expert Trip Planning</strong><p>Our certified travel experts design every itinerary with care.</p></div></li>
+        <li><div class="why-icon" style="background:var(--grad2)">💰</div><div><strong>Best Price Guarantee</strong><p>We match any price. You never pay more than you should.</p></div></li>
+        <li><div class="why-icon" style="background:var(--grad3)">🛡️</div><div><strong>24/7 Travel Support</strong><p>Round-the-clock assistance wherever you are in the world.</p></div></li>
+        <li><div class="why-icon" style="background:linear-gradient(135deg,var(--mint),var(--ocean))">🌟</div><div><strong>Tailor-Made Experiences</strong><p>Every trip is uniquely crafted to match your style and budget.</p></div></li>
+      </ul>
+      <a href="pages/about.html" class="btn btn-primary mt3">Learn More About Us</a>
+    </div>
+    <div class="why-right fade-up fade-up-d2">
+      <div class="why-img-stack">
+        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80" alt="Travel" class="why-img-main">
+        <div class="why-badge-card">
+          <div class="wbc-icon">🏆</div>
+          <div>
+            <strong>Best Agency</strong>
+            <span>Travel Awards 2024</span>
+          </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=400&q=80" alt="Adventure" class="why-img-small">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR PACKAGES PREVIEW -->
+<section class="section" style="background:#fff">
+  <div class="section-header centered">
+    <span class="section-tag tag-ocean">Hot Deals</span>
+    <h2 class="section-title">Popular <span>Packages</span></h2>
+    <div class="divider centered"></div>
+    <p class="section-sub">Carefully curated packages with everything you need — flights, hotels, and experiences.</p>
+  </div>
+  <div class="grid-3">
+    <div class="card fade-up">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80" alt="Bali Package">
+        <div class="card-badges"><span class="badge badge-coral">Bestseller</span></div>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Bali Bliss Package</h3>
+        <div class="card-meta"><span>🕒 7 Days / 6 Nights</span><span>👥 2 Pax</span></div>
+        <ul class="features-list mt1">
+          <li>Return flights included</li>
+          <li>4★ resort accommodation</li>
+          <li>Daily breakfast + 2 dinners</li>
+          <li>Island tour + spa session</li>
+        </ul>
+        <div class="card-footer">
+          <div class="price-tag"><span class="amount">₹49,999</span><span class="per">/ person</span></div>
+          <a href="pages/packages.html" class="btn btn-primary" style="padding:.6rem 1.4rem">Book Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="card fade-up fade-up-d1">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=600&q=80" alt="Europe">
+        <div class="card-badges"><span class="badge badge-ocean">New</span></div>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">European Highlights</h3>
+        <div class="card-meta"><span>🕒 14 Days</span><span>👥 2 Pax</span></div>
+        <ul class="features-list mt1">
+          <li>5-country tour</li>
+          <li>Boutique hotel stays</li>
+          <li>All transfers included</li>
+          <li>Expert local guides</li>
+        </ul>
+        <div class="card-footer">
+          <div class="price-tag"><span class="amount">₹1,29,999</span><span class="per">/ person</span></div>
+          <a href="pages/packages.html" class="btn btn-primary" style="padding:.6rem 1.4rem">Book Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="card fade-up fade-up-d2">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=600&q=80" alt="Maldives">
+        <div class="card-badges"><span class="badge badge-mint">Luxury</span></div>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Maldives Escape</h3>
+        <div class="card-meta"><span>🕒 5 Days / 4 Nights</span><span>👥 Couple</span></div>
+        <ul class="features-list mt1">
+          <li>Overwater villa stay</li>
+          <li>All-inclusive meals</li>
+          <li>Seaplane transfer</li>
+          <li>Snorkeling & water sports</li>
+        </ul>
+        <div class="card-footer">
+          <div class="price-tag"><span class="amount">₹1,49,999</span><span class="per">/ person</span></div>
+          <a href="pages/packages.html" class="btn btn-primary" style="padding:.6rem 1.4rem">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt3">
+    <a href="pages/packages.html" class="btn btn-dark">Browse All Packages →</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" style="background: linear-gradient(135deg, #0D1B2A 0%, #1E2D40 100%);">
+  <div class="section-header centered">
+    <span class="section-tag" style="background:rgba(255,90,95,.2);color:var(--coral)">Travelers Say</span>
+    <h2 class="section-title" style="color:var(--white)">Real Stories, Real <span>Adventures</span></h2>
+    <div class="divider centered"></div>
+  </div>
+  <div class="grid-3">
+    <div class="testimonial-card fade-up">
+      <p class="testimonial-text">"WanderLust made our honeymoon in Bali absolutely magical. Every detail was perfect — the resort, the tours, even the surprises they arranged for us. Truly unforgettable!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">P</div>
+        <div>
+          <div class="author-name">Priya & Rohan Sharma</div>
+          <div class="author-loc">📍 Mumbai, India</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-up fade-up-d1">
+      <p class="testimonial-text">"The European tour was beyond our expectations. Our guide was knowledgeable and friendly, hotels were excellent, and the itinerary was perfectly paced. Highly recommend!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background:var(--grad2)">A</div>
+        <div>
+          <div class="author-name">Ananya Krishnan</div>
+          <div class="author-loc">📍 Bangalore, India</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-up fade-up-d2">
+      <p class="testimonial-text">"From booking to return, everything was seamless. The team was responsive, the Maldives package was worth every rupee. We're already planning our next trip with WanderLust!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background:var(--grad3)">S</div>
+        <div>
+          <div class="author-name">Suresh & Kavitha Nair</div>
+          <div class="author-loc">📍 Chennai, India</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner fade-up">
+  <div class="cta-content">
+    <h2>Ready for Your Next Adventure?</h2>
+    <p>Get personalized travel recommendations and exclusive deals straight to your inbox.</p>
+    <div class="cta-actions">
+      <a href="pages/packages.html" class="btn btn-primary">Browse Packages</a>
+      <a href="pages/contact.html" class="btn btn-outline">Enquire Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+<div class="nav-logo">
+  <img src="https://www.wanderlustmagazine.com/wp-content/uploads/2023/09/wanderlust-logo.svg" 
+       alt="WanderLust" 
+       style="height: 40px; vertical-align: middle;">
+</div>
+      <p>Crafting unforgettable travel experiences since 2026. Your journey begins with us — from the first dream to the final memory.</p>
+      <div class="footer-socials">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">📷</a>
+        <a href="#" aria-label="Twitter">𝕏</a>
+        <a href="#" aria-label="YouTube">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="pages/about.html">About Us</a>
+      <a href="pages/destinations.html">Destinations</a>
+      <a href="pages/packages.html">Packages</a>
+      <a href="pages/contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Destinations</h4>
+      <a href="pages/destinations.html">Bali</a>
+      <a href="pages/destinations.html">Maldives</a>
+      <a href="pages/destinations.html">Europe</a>
+      <a href="pages/destinations.html">Dubai</a>
+      <a href="pages/destinations.html">Japan</a>
+    </div>
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p style="font-size:.88rem;margin-bottom:1rem;line-height:1.6">Get exclusive deals and travel inspiration delivered to your inbox.</p>
+      <div class="footer-newsletter">
+        <input type="email" placeholder="your@email.com">
+        <button>Subscribe →</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 WanderLust Travel. All rights reserved by omsml.</span>
+    <span>Privacy Policy · Terms of Service</span>
+  </div>
+</footer>
+
+<button class="back-to-top" aria-label="Back to top">↑</button>
+
+<script src="js/main.js"></script>
+<script>
+  // Hero slider
+  initSlider(document.querySelector('.hero-slider'));
+</script>
+</body>
+</html>

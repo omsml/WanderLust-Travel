@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Packages — WanderLust Travel</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .page-hero-bg { background-image:url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=1600&q=80'); }
+    /* PACKAGE CARD */
+    .pkg-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+    .pkg-card { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-soft); transition:transform .3s,box-shadow .3s; display:flex; flex-direction:column; }
+    .pkg-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-deep); }
+    .pkg-card.featured { border:2px solid var(--coral); }
+    .pkg-card.featured .featured-ribbon { display:block; }
+    .featured-ribbon { display:none; position:absolute; top:1.2rem; right:-1rem; background:var(--coral); color:var(--white); font-size:.75rem; font-weight:700; padding:.3rem 1.4rem .3rem .8rem; clip-path:polygon(0 0,100% 0,85% 50%,100% 100%,0 100%); }
+    .pkg-img { position:relative; height:200px; overflow:hidden; }
+    .pkg-img img { width:100%; height:100%; object-fit:cover; transition:transform .5s; }
+    .pkg-card:hover .pkg-img img { transform:scale(1.08); }
+    .pkg-badges { position:absolute; top:1rem; left:1rem; display:flex; gap:.4rem; }
+    .pkg-body { padding:1.5rem; flex:1; display:flex; flex-direction:column; }
+    .pkg-title { font-family:var(--font-display); font-size:1.2rem; font-weight:700; margin-bottom:.5rem; }
+    .pkg-dest { color:var(--muted); font-size:.85rem; display:flex; align-items:center; gap:.3rem; }
+    .pkg-info { display:flex; gap:1.2rem; margin:1rem 0; flex-wrap:wrap; }
+    .pkg-info span { font-size:.82rem; color:var(--muted); background:#F4F6F9; padding:.3rem .7rem; border-radius:50px; }
+    .pkg-includes { margin:.75rem 0; }
+    .pkg-includes li { font-size:.86rem; color:var(--charcoal); display:flex; align-items:center; gap:.5rem; margin-bottom:.35rem; }
+    .pkg-includes li::before { content:'✓'; color:var(--mint); font-weight:700; font-size:.8rem; }
+    .pkg-footer { display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:1rem; border-top:1px solid #F0F2F5; }
+    .pkg-price .old { text-decoration:line-through; color:var(--muted); font-size:.82rem; }
+    .pkg-price .new { font-family:var(--font-display); font-size:1.5rem; font-weight:900; color:var(--coral); }
+    .pkg-price .per { color:var(--muted); font-size:.82rem; }
+    /* FILTER TABS */
+    .pkg-tabs { display:flex; gap:.8rem; margin-bottom:2rem; flex-wrap:wrap; }
+    .pkg-tab { padding:.55rem 1.4rem; border-radius:50px; border:2px solid #E5E9EF; background:var(--white); font-size:.9rem; font-weight:600; cursor:pointer; transition:all .2s; color:var(--dark); font-family:var(--font-body); }
+    .pkg-tab.active,.pkg-tab:hover { background:var(--ocean); border-color:var(--ocean); color:var(--white); }
+    /* SORT */
+    .pkg-controls { display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; flex-wrap:wrap; gap:1rem; }
+    .pkg-count { color:var(--muted); font-size:.9rem; }
+    .pkg-sort select { padding:.5rem 1rem; border:2px solid #E5E9EF; border-radius:var(--radius-sm); font-family:var(--font-body); font-size:.9rem; outline:none; cursor:pointer; }
+    /* MODAL */
+    .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:2000; display:none; align-items:center; justify-content:center; padding:1rem; }
+    .modal-overlay.open { display:flex; }
+    .modal { background:var(--white); border-radius:var(--radius-xl); max-width:560px; width:100%; max-height:90vh; overflow-y:auto; padding:2.5rem; position:relative; }
+    .modal-close { position:absolute; top:1.2rem; right:1.5rem; font-size:1.5rem; cursor:pointer; background:none; border:none; color:var(--muted); }
+    .modal h2 { font-family:var(--font-display); font-size:1.5rem; margin-bottom:1.5rem; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    @media(max-width:1024px){ .pkg-grid{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:600px){ .pkg-grid{grid-template-columns:1fr;} .form-row{grid-template-columns:1fr;} }
+  </style>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+  (function() {
+      emailjs.init("7i_R2Mt-WIyfIqKgC"); 
+  })();
+</script>
+
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+  <img src="https://www.wanderlustmagazine.com/wp-content/uploads/2023/09/wanderlust-logo.svg" 
+       alt="WanderLust" 
+       style="height: 40px; vertical-align: middle;">
+</a>
+  <div class="nav-links" id="navLinks">
+    <a href="../index.html">Home</a><a href="about.html">About Us</a><a href="destinations.html">Destinations</a>
+    <a href="packages.html" class="active">Packages</a><a href="contact.html">Contact</a>
+    <a href="packages.html" class="nav-cta">Book Now ✈</a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <span class="section-tag tag-sun" style="background:rgba(255,179,71,.2);color:var(--sun)">Deals & Packages</span>
+    <h1 class="page-hero-title">Travel Packages</h1>
+    <p class="page-hero-sub">All-inclusive packages crafted for every budget and travel style.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="pkg-tabs">
+    <button class="pkg-tab active" data-tab="all">All Packages</button>
+    <button class="pkg-tab" data-tab="honeymoon">💑 Honeymoon</button>
+    <button class="pkg-tab" data-tab="adventure">🏔 Adventure</button>
+    <button class="pkg-tab" data-tab="family">👨‍👩‍👧 Family</button>
+    <button class="pkg-tab" data-tab="luxury">💎 Luxury</button>
+    <button class="pkg-tab" data-tab="budget">💸 Budget</button>
+  </div>
+  <div class="pkg-controls">
+    <span class="pkg-count" id="pkgCount">Showing 9 packages</span>
+    <div class="pkg-sort">
+      <select id="pkgSort">
+        <option value="default">Sort: Featured</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+        <option value="duration">Duration</option>
+      </select>
+    </div>
+  </div>
+  <div class="pkg-grid" id="pkgGrid">
+    <div class="pkg-card fade-up" data-cat="honeymoon luxury beach" data-price="149999" data-days="5">
+      <div class="pkg-img">
+        <img src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=600&q=80" alt="Maldives">
+        <div class="pkg-badges"><span class="badge badge-mint">Luxury</span><span class="badge badge-coral">Bestseller</span></div>
+        <div class="featured-ribbon">⭐ Featured</div>
+      </div>
+      <div class="pkg-body">
+        <h3 class="pkg-title">Maldives Honeymoon Escape</h3>
+        <p class="pkg-dest">📍 Maldives — South Asia</p>
+        <div class="pkg-info">
+          <span>🕒 5D/4N</span><span>👥 2 Pax</span><span>✈ Flights Incl.</span>
+        </div>
+        <ul class="pkg-includes">
+          <li>Overwater villa with ocean view</li>
+          <li>All-inclusive meals & drinks</li>
+          <li>Seaplane airport transfer</li>
+          <li>Snorkeling & couples spa</li>
+          <li>Sunset cruise</li>
+        </ul>
+        <div class="pkg-footer">
+          <div class="pkg-price">
+            <div class="old">₹1,79,999</div>
+            <span class="new">₹1,49,999</span>
+            <span class="per">/ person</span>
+          </div>
+          <button class="btn btn-primary" style="padding:.55rem 1.2rem;font-size:.88rem" onclick="openModal('Maldives Honeymoon Escape','₹1,49,999','5D/4N')">Book Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pkg-card fade-up fade-up-d1 featured" data-cat="cultural luxury europe" data-price="129999" data-days="14">
+      <div class="pkg-img">
+        <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=600&q=80" alt="Europe">
+        <div class="pkg-badges"><span class="badge badge-ocean">Multi-Country</span></div>
+        <div class="featured-ribbon">⭐ Featured</div>
+      </div>
+      <div class="pkg-body">
+        <h3 class="pkg-title">European Grand Tour</h3>
+        <p class="pkg-dest">📍 France · Italy · Switzerland</p>
+        <div class="pkg-info"><span>🕒 14D/13N</span><span>👥 2–8 Pax</span><span>✈ Incl.</span></div>
+        <ul class="pkg-includes">
+          <li>5 countries, 8 cities</li>
+          <li>Boutique hotel stays</li>
+          <li>All inter-city transfers</li>
+          <li>Expert English-speaking guide</li>
+          <li>Daily breakfast</li>
+        </ul>
+        <div class="pkg-footer">
+          <div class="pkg-price"><div class="old">₹1,49,999</div><span class="new">₹1,29,999</span><span class="per">/ person</span></div>
+          <button class="btn btn-primary" style="padding:.55rem 1.2rem;font-size:.88rem" onclick="openModal('European Grand Tour','₹1,29,999','14D/13N')">Book Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pkg-card fade-up fade-up-d2" data-cat="beach family" data-price="49999" data-days="7">
+      <div class="pkg-img">
+        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80" alt="Bali">
+        <div class="pkg-badges"><span class="badge badge-sun">Family</span></div>
+      </div>
+      <div class="pkg-body">
+        <h3 class="pkg-title">Bali Family Adventure</h3>
+        <p class="pkg-dest">📍 Bali, Indonesia</p>
+        <div class="pkg-info"><span>🕒 7D/6N</span><span>👥 4 Pax</span><span>✈ Incl.</span></div>
+        <ul class="pkg-includes">
+          <li>4★ villa with private pool</li>
+          <li>Daily breakfast</li>
+          <li>Ubud cultural tour</li>
+          <li>Water park & beach day</li>
+          <li>Kids' activities included</li>
+        </ul>
+        <div class="pkg-footer">
+          <div class="pkg-price"><div class="old">₹59,999</div><span class="new">₹49,999</span><span class="per">/ person</span></div>
+          <button class="btn btn-primary" style="padding:.55rem 1.2rem;font-size:.88rem" onclick="openModal('Bali Family Adventure','₹49,999','7D/6N')">Book Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pkg-card fade-up" data-cat="adventure" data-price="55000" data-days="8">
+      <div class="pkg-img">
+        <img src="https://images.unsplash.com/photo-1469521669194-babb45599def?w=600&q=80" alt="Nepal">
+        <div class="pkg-badges"><span class="badge badge-coral">Adventure</span></div>
+      </div>
+      <div class="pkg-body">
+        <h3 class="pkg-title">Nepal Himalaya Trek</h3>
+        <p class="pkg-dest">📍 Kathmandu & Himalayas</p>
+        <div class="pkg-info"><span>🕒 8D/7N</span><span>👥 2–10 Pax</span><span>🏔 Trekking</span></div>
+        <ul class="pkg-includes">
+          <li>Everest Base Camp trail</li>
+          <li>Experienced mountain guide</li>
+          <li>All accommodation on trail</li>
+          <li>Meals during trek</li>
+          <li>Permits & insurance</li>
+        </ul>
+        <div class="pkg-footer">
+          <div class="pkg-price"><span class="new">₹55,000</span><span class="per">/ person</span></div>
+          <button class="btn btn-primary" style="padding:.55rem 1.2rem;font-size:.88rem" onclick="openModal('Nepal Himalaya Trek','₹55,000','8D/7N')">Book Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pkg-card fade-up fade-up-d1" data-cat="luxury" data-price="89999" data-days="6">
+      <div class="pkg-img">
+        <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=80" alt="Dubai">
+        <div class="pkg-badges"><span class="badge badge-mint">Luxury</span></div>
+      </div>
+      <div class="pkg-body">
+        <h3 class="pkg-title">Dubai Luxury Experience</h3>
+        <p class="pkg-dest">📍 Dubai, UAE</p>
+        <div class="pkg-info"><span>🕒 6D/5N</span><span>👥 2 Pax</span><span>✈ Incl.</span></div>
+        <ul class="pkg-includes">
+          <li>5★ Burj Al Arab stay</li>
+          <li>Desert safari with dinner</li>
+          <li>Burj Khalifa observation deck</li>
+          <li>Shopping tour & transfers</li>
+          <li>City tour & Dhow cruise</li>
+        </ul>
+        <div class="pkg-footer">
+          <div class="pkg-price"><div class="old">₹1,09,999</div><span class="new">₹89,999</span><span class="per">/ person</span></div>
+          <button class="btn btn-primary" style="padding:.55rem 1.2rem;font-size:.88rem" onclick="openModal('Dubai Luxury Experience','₹89,999','6D/5N')">Book Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pkg-card fade-up fade-up-d2" data-cat="budget beach" data-price="28999" data-days="5">
+      <div class="pkg-img">
+        <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=600&q=80" alt="Thailand">
+        <div class="pkg-badges"><span class="badge badge-sun">Budget</span></div>
+      </div>
+      <div class="pkg-body">
+        <h3 class="pkg-title">Thailand Budget Getaway</h3>
+        <p class="pkg-dest">📍 Bangkok & Phuket</p>
+        <div class="pkg-info"><span>🕒 5D/4N</span><span>👥 2 Pax</span><span>✈ Incl.</span></div>
+        <ul class="pkg-includes">
+          <li>3★ hotels in both cities</li>
+          <li>Inter-city transfers</li>
+          <li>Temple & island tour</li>
+          <li>Street food experience</li>
+        </ul>
+        <div class="pkg-footer">
+          <div class="pkg-price"><span class="new">₹28,999</span><span class="per">/ person</span></div>
+          <button class="btn btn-primary" style="padding:.55rem 1.2rem;font-size:.88rem" onclick="openModal('Thailand Budget Getaway','₹28,999','5D/4N')">Book Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pkg-card fade-up" data-cat="honeymoon beach" data-price="95000" data-days="7">
+      <div class="pkg-img">
+        <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=80" alt="Santorini">
+        <div class="pkg-badges"><span class="badge badge-coral">Honeymoon</span></div>
+      </div>
+      <div class="pkg-body">
+        <h3 class="pkg-title">Santorini Romance</h3>
+        <p class="pkg-dest">📍 Santorini, Greece</p>
+        <div class="pkg-info"><span>🕒 7D/6N</span><span>👥 Couple</span><span>✈ Incl.</span></div>
+        <ul class="pkg-includes">
+          <li>Cave hotel with caldera view</li>
+          <li>Wine tasting tour</li>
+          <li>Sunset sailing cruise</li>
+          <li>Couples photoshoot</li>
+          <li>Daily breakfast</li>
+        </ul>
+        <div class="pkg-footer">
+          <div class="pkg-price"><div class="old">₹1,10,000</div><span class="new">₹95,000</span><span class="per">/ person</span></div>
+          <button class="btn btn-primary" style="padding:.55rem 1.2rem;font-size:.88rem" onclick="openModal('Santorini Romance','₹95,000','7D/6N')">Book Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pkg-card fade-up fade-up-d1" data-cat="family cultural" data-price="39999" data-days="6">
+      <div class="pkg-img">
+        <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600&q=80" alt="Istanbul">
+        <div class="pkg-badges"><span class="badge badge-ocean">Cultural</span></div>
+      </div>
+      <div class="pkg-body">
+        <h3 class="pkg-title">Istanbul Heritage Tour</h3>
+        <p class="pkg-dest">📍 Istanbul, Turkey</p>
+        <div class="pkg-info"><span>🕒 6D/5N</span><span>👥 2–6 Pax</span><span>✈ Incl.</span></div>
+        <ul class="pkg-includes">
+          <li>4★ hotel in old city</li>
+          <li>Bosphorus dinner cruise</li>
+          <li>Hagia Sophia & Grand Bazaar</li>
+          <li>Turkish hamam experience</li>
+        </ul>
+        <div class="pkg-footer">
+          <div class="pkg-price"><span class="new">₹39,999</span><span class="per">/ person</span></div>
+          <button class="btn btn-primary" style="padding:.55rem 1.2rem;font-size:.88rem" onclick="openModal('Istanbul Heritage Tour','₹39,999','6D/5N')">Book Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pkg-card fade-up fade-up-d2" data-cat="adventure wildlife" data-price="120000" data-days="10">
+      <div class="pkg-img">
+        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600&q=80" alt="Kenya">
+        <div class="pkg-badges"><span class="badge badge-sun">Wildlife</span></div>
+      </div>
+      <div class="pkg-body">
+        <h3 class="pkg-title">Kenya Safari Adventure</h3>
+        <p class="pkg-dest">📍 Nairobi & Maasai Mara</p>
+        <div class="pkg-info"><span>🕒 10D/9N</span><span>👥 2–8 Pax</span><span>✈ Incl.</span></div>
+        <ul class="pkg-includes">
+          <li>Big Five game drives</li>
+          <li>Tented camp accommodation</li>
+          <li>Maasai village experience</li>
+          <li>Hot air balloon safari</li>
+          <li>All meals included</li>
+        </ul>
+        <div class="pkg-footer">
+          <div class="pkg-price"><span class="new">₹1,20,000</span><span class="per">/ person</span></div>
+          <button class="btn btn-primary" style="padding:.55rem 1.2rem;font-size:.88rem" onclick="openModal('Kenya Safari Adventure','₹1,20,000','10D/9N')">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h2 id="modalTitle">Book Your Package</h2>
+    <p style="color:var(--muted);font-size:.9rem;margin-bottom:1.5rem" id="modalSub">Fill in your details and our team will contact you shortly.</p>
+    <form id="bookingForm" novalidate>
+      <div class="form-row">
+        <div class="form-group"><label>Full Name *</label><input type="text" id="bkName" placeholder="Your full name"><span class="form-error"></span></div>
+        <div class="form-group"><label>Email *</label><input type="email" id="bkEmail" placeholder="your@email.com"><span class="form-error"></span></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Phone *</label><input type="tel" id="bkPhone" placeholder="+91 98765 43210"><span class="form-error"></span></div>
+        <div class="form-group"><label>Travel Date *</label><input type="date" id="bkDate"><span class="form-error"></span></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>No. of Travelers</label><select id="bkPax"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5+</option></select></div>
+        <div class="form-group"><label>Package</label><input type="text" id="bkPackage" readonly></div>
+      </div>
+      <div class="form-group"><label>Special Requests</label><textarea id="bkNotes" placeholder="Any dietary requirements, accessibility needs, or special occasions?"></textarea></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Confirm Enquiry ✈</button>
+    </form>
+    <div id="bookSuccess" style="display:none;text-align:center;padding:2rem 0">
+      <div style="font-size:3rem;margin-bottom:1rem">🎉</div>
+      <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--dark)">Booking Confirmation Sent!</h3>
+      <p style="color:var(--muted);margin-top:.5rem">Our travel expert will reach out within 24 hours.</p>
+      <button class="btn btn-primary mt2" onclick="closeModal()">Done</button>
+    </div>
+  </div>
+</div> 
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+<div class="nav-logo">
+  <img src="https://www.wanderlustmagazine.com/wp-content/uploads/2023/09/wanderlust-logo.svg" 
+       alt="WanderLust" 
+       style="height: 40px; vertical-align: middle;">
+</div>
+      <p>Crafting unforgettable travel experiences since 2026.</p><div class="footer-socials"><a href="#">f</a><a href="#">📷</a><a href="#">𝕏</a><a href="#">▶</a></div></div>
+    <div class="footer-col"><h4>Quick Links</h4><a href="../index.html">Home</a><a href="about.html">About Us</a><a href="destinations.html">Destinations</a><a href="packages.html">Packages</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Popular</h4><a href="#">Bali</a><a href="#">Maldives</a><a href="#">Europe</a><a href="#">Dubai</a><a href="#">Japan</a></div>
+    <div class="footer-col"><h4>Newsletter</h4><div class="footer-newsletter"><input type="email" placeholder="your@email.com"><button>Subscribe →</button></div></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 WanderLust Travel. All rights reserved by omsml.</span><span>Privacy · Terms</span></div>
+</footer>
+<button class="back-to-top">↑</button>
+<script src="../js/main.js"></script>
+<script>
+  // Package tab filter
+  const pkgTabs = document.querySelectorAll('.pkg-tab');
+  const pkgCards = document.querySelectorAll('.pkg-card');
+  const pkgCount = document.getElementById('pkgCount');
+  let currentTab = 'all';
+
+  function filterPkgs() {
+    let n = 0;
+    pkgCards.forEach(card => {
+      const cat = card.dataset.cat || '';
+      const show = currentTab === 'all' || cat.includes(currentTab);
+      card.style.display = show ? '' : 'none';
+      if (show) n++;
+    });
+    pkgCount.textContent = `Showing ${n} package${n !== 1 ? 's' : ''}`;
+  }
+
+  pkgTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      pkgTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentTab = tab.dataset.tab;
+      filterPkgs();
+    });
+  });
+
+  // Modal
+  function openModal(name, price, duration) {
+    document.getElementById('modalTitle').textContent = `Book: ${name}`;
+    document.getElementById('modalSub').textContent = `${duration} · ${price} per person`;
+    document.getElementById('bkPackage').value = name;
+    document.getElementById('bookingForm').style.display = '';
+    document.getElementById('bookSuccess').style.display = 'none';
+    document.getElementById('bookingModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('bookingModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('bookingModal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeModal();
+  });
+
+  // Form submit
+  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const fields = [
+      document.getElementById('bkName'),
+      document.getElementById('bkEmail'),
+      document.getElementById('bkPhone'),
+      document.getElementById('bkDate'),
+    ];
+    let valid = true;
+    fields.forEach(f => { if (!validateField(f)) valid = false; });
+    
+    if (valid) {
+      submitBtn.innerText = "Processing...";
+      submitBtn.disabled = true;
+
+      // Map the booking form IDs to EmailJS template variables
+      const templateParams = {
+        first_name: document.getElementById('bkName').value,
+        reply_to: document.getElementById('bkEmail').value,
+        phone: document.getElementById('bkPhone').value,
+        travel_date: document.getElementById('bkDate').value,
+        pax: document.getElementById('bkPax').value,
+        destination: document.getElementById('bkPackage').value,
+        message: document.getElementById('bkNotes').value
+      };
+
+      // Sending using your Service ID 'omsml' and your Template ID
+      emailjs.send('omsml', 'template_4mw4d59', templateParams)
+        .then(() => {
+          this.style.display = 'none';
+          document.getElementById('bookSuccess').style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.innerText = "Confirm Enquiry ✈";
+        }, (error) => {
+          alert("Booking failed: " + JSON.stringify(error));
+          submitBtn.disabled = false;
+          submitBtn.innerText = "Confirm Enquiry ✈";
+        });
+    }
+  });
+
+  // Validation helper
+  function validateField(f) {
+    if(!f.value.trim()) {
+        f.style.borderColor = "red";
+        return false;
+    }
+    f.style.borderColor = "";
+    return true;
+  }
+</script>
+</body>
+</html>

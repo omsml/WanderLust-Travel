@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destinations — WanderLust Travel</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .page-hero-bg { background-image:url('https://images.unsplash.com/photo-1500835556837-99ac94a94552?w=1600&q=80'); }
+    /* FILTER */
+    .filter-bar { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:3rem; align-items:center; }
+    .filter-btn { padding:.55rem 1.4rem; border-radius:50px; border:2px solid #E5E9EF; background:var(--white); font-family:var(--font-body); font-size:.9rem; font-weight:600; cursor:pointer; transition:all .2s; color:var(--dark); }
+    .filter-btn.active,.filter-btn:hover { background:var(--coral); border-color:var(--coral); color:var(--white); }
+    .search-input-wrap { margin-left:auto; position:relative; }
+    .search-input-wrap input { padding:.55rem 1.2rem .55rem 2.5rem; border:2px solid #E5E9EF; border-radius:50px; font-family:var(--font-body); font-size:.9rem; width:240px; outline:none; transition:border-color .2s; }
+    .search-input-wrap input:focus { border-color:var(--ocean); }
+    .search-input-wrap::before { content:'🔍'; position:absolute; left:.8rem; top:50%; transform:translateY(-50%); font-size:.85rem; }
+    /* DEST CARDS */
+    .dest-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+    .dest-item { position:relative; border-radius:var(--radius); overflow:hidden; height:320px; cursor:pointer; }
+    .dest-item img { width:100%; height:100%; object-fit:cover; transition:transform .5s; }
+    .dest-item:hover img { transform:scale(1.08); }
+    .dest-item-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(13,27,42,.85) 0%,transparent 55%); display:flex; flex-direction:column; justify-content:flex-end; padding:1.5rem; }
+    .dest-item-overlay h3 { color:var(--white); font-family:var(--font-display); font-size:1.4rem; }
+    .dest-item-overlay p { color:rgba(255,255,255,.75); font-size:.85rem; }
+    .dest-item-meta { display:flex; justify-content:space-between; align-items:center; margin-top:.75rem; }
+    .dest-item-from { color:var(--sun); font-weight:700; font-size:.9rem; }
+    .dest-item-btn { background:var(--coral); color:var(--white); border:none; padding:.4rem 1rem; border-radius:50px; font-size:.82rem; font-weight:600; cursor:pointer; opacity:0; transform:translateY(8px); transition:all .3s; font-family:var(--font-body); }
+    .dest-item:hover .dest-item-btn { opacity:1; transform:translateY(0); }
+    .dest-tag { position:absolute; top:1rem; left:1rem; z-index:2; }
+    .no-results { text-align:center; padding:4rem; color:var(--muted); font-size:1.1rem; display:none; }
+    /* GALLERY */
+    .gallery-grid { columns:3; gap:1rem; }
+    .gallery-img { break-inside:avoid; margin-bottom:1rem; border-radius:var(--radius-sm); overflow:hidden; }
+    .gallery-img img { width:100%; display:block; transition:transform .4s; }
+    .gallery-img:hover img { transform:scale(1.05); }
+    @media(max-width:900px){ .dest-grid{grid-template-columns:repeat(2,1fr);} .gallery-grid{columns:2;} }
+    @media(max-width:480px){ .dest-grid{grid-template-columns:1fr;} .gallery-grid{columns:1;} .search-input-wrap{margin-left:0;width:100%;} .search-input-wrap input{width:100%;} }
+  </style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+  <img src="https://www.wanderlustmagazine.com/wp-content/uploads/2023/09/wanderlust-logo.svg" 
+       alt="WanderLust" 
+       style="height: 40px; vertical-align: middle;">
+</a>
+  <div class="nav-links" id="navLinks">
+    <a href="../index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="destinations.html" class="active">Destinations</a>
+    <a href="packages.html">Packages</a>
+    <a href="contact.html">Contact</a>
+    <a href="packages.html" class="nav-cta">Book Now ✈</a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <span class="section-tag tag-ocean">Explore</span>
+    <h1 class="page-hero-title">Our Destinations</h1>
+    <p class="page-hero-sub">120+ handpicked destinations across 6 continents — find yours today.</p>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="section">
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="beach">🏖 Beach</button>
+    <button class="filter-btn" data-filter="adventure">🏔 Adventure</button>
+    <button class="filter-btn" data-filter="cultural">🏛 Cultural</button>
+    <button class="filter-btn" data-filter="luxury">💎 Luxury</button>
+    <button class="filter-btn" data-filter="wildlife">🦁 Wildlife</button>
+    <div class="search-input-wrap">
+      <input type="text" id="destSearch" placeholder="Search destinations...">
+    </div>
+  </div>
+  <div class="dest-grid" id="destGrid">
+    <!-- BEACH -->
+    <div class="dest-item fade-up" data-category="beach" data-name="bali indonesia">
+      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=700&q=80" alt="Bali">
+      <div class="dest-tag"><span class="badge badge-coral">Beach</span></div>
+      <div class="dest-item-overlay">
+        <h3>Bali, Indonesia</h3>
+        <p>🌺 Temples · Rice Terraces · Surfing</p>
+        <div class="dest-item-meta">
+          <span class="dest-item-from">From ₹45,000</span>
+          <button class="dest-item-btn" onclick="window.location.href='packages.html'">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="dest-item fade-up fade-up-d1" data-category="luxury beach" data-name="maldives">
+      <img src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=700&q=80" alt="Maldives">
+      <div class="dest-tag"><span class="badge badge-mint">Luxury</span></div>
+      <div class="dest-item-overlay">
+        <h3>Maldives</h3>
+        <p>🐠 Overwater Villas · Crystal Waters</p>
+        <div class="dest-item-meta">
+          <span class="dest-item-from">From ₹1,10,000</span>
+          <button class="dest-item-btn" onclick="window.location.href='packages.html'">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="dest-item fade-up fade-up-d2" data-category="beach cultural" data-name="thailand phuket">
+      <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=700&q=80" alt="Thailand">
+      <div class="dest-tag"><span class="badge badge-ocean">Beach</span></div>
+      <div class="dest-item-overlay">
+        <h3>Phuket, Thailand</h3>
+        <p>🏖 Islands · Street Food · Temples</p>
+        <div class="dest-item-meta">
+          <span class="dest-item-from">From ₹35,000</span>
+          <button class="dest-item-btn" onclick="window.location.href='packages.html'">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <!-- CULTURAL -->
+    <div class="dest-item fade-up" data-category="cultural luxury" data-name="paris france">
+      <img src="https://images.unsplash.com/photo-1431274172761-fca41d930114?w=700&q=80" alt="Paris">
+      <div class="dest-tag"><span class="badge badge-coral">Cultural</span></div>
+      <div class="dest-item-overlay">
+        <h3>Paris, France</h3>
+        <p>🗼 Art · Romance · Gastronomy</p>
+        <div class="dest-item-meta">
+          <span class="dest-item-from">From ₹85,000</span>
+          <button class="dest-item-btn" onclick="window.location.href='packages.html'">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="dest-item fade-up fade-up-d1" data-category="cultural adventure" data-name="tokyo japan">
+      <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=700&q=80" alt="Tokyo">
+      <div class="dest-tag"><span class="badge badge-mint">Cultural</span></div>
+      <div class="dest-item-overlay">
+        <h3>Tokyo, Japan</h3>
+        <p>⛩️ Temples · Neon Lights · Sushi</p>
+        <div class="dest-item-meta">
+          <span class="dest-item-from">From ₹95,000</span>
+          <button class="dest-item-btn" onclick="window.location.href='packages.html'">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="dest-item fade-up fade-up-d2" data-category="cultural luxury" data-name="rome italy">
+      <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=700&q=80" alt="Rome">
+      <div class="dest-tag"><span class="badge badge-sun">Cultural</span></div>
+      <div class="dest-item-overlay">
+        <h3>Rome, Italy</h3>
+        <p>🏛 History · Pasta · Architecture</p>
+        <div class="dest-item-meta">
+          <span class="dest-item-from">From ₹75,000</span>
+          <button class="dest-item-btn" onclick="window.location.href='packages.html'">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <!-- ADVENTURE -->
+    <div class="dest-item fade-up" data-category="adventure" data-name="new zealand queenstown">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80" alt="New Zealand">
+      <div class="dest-tag"><span class="badge badge-coral">Adventure</span></div>
+      <div class="dest-item-overlay">
+        <h3>Queenstown, NZ</h3>
+        <p>🏔 Bungee · Skydive · Fjords</p>
+        <div class="dest-item-meta">
+          <span class="dest-item-from">From ₹1,40,000</span>
+          <button class="dest-item-btn" onclick="window.location.href='packages.html'">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="dest-item fade-up fade-up-d1" data-category="adventure" data-name="nepal himalayas trek">
+      <img src="https://images.unsplash.com/photo-1469521669194-babb45599def?w=700&q=80" alt="Nepal">
+      <div class="dest-tag"><span class="badge badge-ocean">Adventure</span></div>
+      <div class="dest-item-overlay">
+        <h3>Nepal Himalayas</h3>
+        <p>⛰️ Trekking · Everest Base Camp</p>
+        <div class="dest-item-meta">
+          <span class="dest-item-from">From ₹55,000</span>
+          <button class="dest-item-btn" onclick="window.location.href='packages.html'">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <!-- LUXURY -->
+    <div class="dest-item fade-up fade-up-d2" data-category="luxury" data-name="dubai uae">
+      <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=700&q=80" alt="Dubai">
+      <div class="dest-tag"><span class="badge badge-mint">Luxury</span></div>
+      <div class="dest-item-overlay">
+        <h3>Dubai, UAE</h3>
+        <p>🏙️ Burj Khalifa · Desert Safari</p>
+        <div class="dest-item-meta">
+          <span class="dest-item-from">From ₹55,000</span>
+          <button class="dest-item-btn" onclick="window.location.href='packages.html'">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <!-- WILDLIFE -->
+    <div class="dest-item fade-up" data-category="wildlife adventure" data-name="kenya safari africa">
+      <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=700&q=80" alt="Kenya">
+      <div class="dest-tag"><span class="badge badge-sun">Wildlife</span></div>
+      <div class="dest-item-overlay">
+        <h3>Kenya Safari</h3>
+        <p>🦁 Big Five · Serengeti · Maasai Mara</p>
+        <div class="dest-item-meta">
+          <span class="dest-item-from">From ₹1,20,000</span>
+          <button class="dest-item-btn" onclick="window.location.href='packages.html'">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="dest-item fade-up fade-up-d1" data-category="beach adventure" data-name="santorini greece">
+      <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=700&q=80" alt="Santorini">
+      <div class="dest-tag"><span class="badge badge-coral">Beach</span></div>
+      <div class="dest-item-overlay">
+        <h3>Santorini, Greece</h3>
+        <p>🌅 Sunsets · White Villages · Wine</p>
+        <div class="dest-item-meta">
+          <span class="dest-item-from">From ₹95,000</span>
+          <button class="dest-item-btn" onclick="window.location.href='packages.html'">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="dest-item fade-up fade-up-d2" data-category="cultural" data-name="istanbul turkey">
+      <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=700&q=80" alt="Istanbul">
+      <div class="dest-tag"><span class="badge badge-ocean">Cultural</span></div>
+      <div class="dest-item-overlay">
+        <h3>Istanbul, Turkey</h3>
+        <p>🕌 Bazaars · Hagia Sophia · Bosphorus</p>
+        <div class="dest-item-meta">
+          <span class="dest-item-from">From ₹65,000</span>
+          <button class="dest-item-btn" onclick="window.location.href='packages.html'">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="no-results" id="noResults">No destinations found. Try a different search or filter.</div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section class="section" style="background:var(--white)">
+  <div class="section-header centered">
+    <span class="section-tag tag-mint">Captured Moments</span>
+    <h2 class="section-title">Travel <span>Gallery</span></h2>
+    <div class="divider centered"></div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-img fade-up"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=500&q=80" alt="Travel"></div>
+    <div class="gallery-img fade-up fade-up-d1"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80" alt="Mountain"></div>
+    <div class="gallery-img fade-up fade-up-d2"><img src="https://images.unsplash.com/photo-1500835556837-99ac94a94552?w=500&q=80" alt="Beach"></div>
+    <div class="gallery-img fade-up"><img src="https://images.unsplash.com/photo-1469521669194-babb45599def?w=500&q=80" alt="Trek"></div>
+    <div class="gallery-img fade-up fade-up-d1"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=500&q=80" alt="City"></div>
+    <div class="gallery-img fade-up fade-up-d2"><img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=500&q=80" alt="Europe"></div>
+    <div class="gallery-img fade-up"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=500&q=80" alt="Safari"></div>
+    <div class="gallery-img fade-up fade-up-d1"><img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=500&q=80" alt="Santorini"></div>
+    <div class="gallery-img fade-up fade-up-d2"><img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=500&q=80" alt="Istanbul"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo">
+  <img src="https://www.wanderlustmagazine.com/wp-content/uploads/2023/09/wanderlust-logo.svg" 
+       alt="WanderLust" 
+       style="height: 40px; vertical-align: middle;">
+</div>
+      <p>Crafting unforgettable travel experiences since 2026.</p><div class="footer-socials"><a href="#">f</a><a href="#">📷</a><a href="#">𝕏</a><a href="#">▶</a></div></div>
+    <div class="footer-col"><h4>Quick Links</h4><a href="../index.html">Home</a><a href="about.html">About Us</a><a href="destinations.html">Destinations</a><a href="packages.html">Packages</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Popular</h4><a href="#">Bali</a><a href="#">Maldives</a><a href="#">Europe</a><a href="#">Dubai</a><a href="#">Japan</a></div>
+    <div class="footer-col"><h4>Newsletter</h4><div class="footer-newsletter"><input type="email" placeholder="your@email.com"><button>Subscribe →</button></div></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 WanderLust Travel. All rights reserved by omsml.</span><span>Privacy · Terms</span></div>
+</footer>
+<button class="back-to-top">↑</button>
+<script src="../js/main.js"></script>
+<script>
+  // Filter & Search
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const destItems  = document.querySelectorAll('.dest-item');
+  const searchInput = document.getElementById('destSearch');
+  const noResults   = document.getElementById('noResults');
+  let currentFilter = 'all';
+
+  function applyFilters() {
+    const q = searchInput.value.toLowerCase().trim();
+    let visible = 0;
+    destItems.forEach(item => {
+      const cat  = item.dataset.category || '';
+      const name = item.dataset.name || '';
+      const matchCat  = currentFilter === 'all' || cat.includes(currentFilter);
+      const matchName = !q || name.includes(q);
+      if (matchCat && matchName) { item.style.display = ''; visible++; }
+      else { item.style.display = 'none'; }
+    });
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      applyFilters();
+    });
+  });
+  searchInput.addEventListener('input', applyFilters);
+</script>
+</body>
+</html>
