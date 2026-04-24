@@ -47,7 +47,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
   (function() {
-      emailjs.init("abcdefgh"); //give with your id 
+      emailjs.init("abcdefgh"); 
   })();
 </script>
   
@@ -299,7 +299,6 @@
           btn.disabled = false;
           btn.innerText = "Send Message ✉";
         }, function(error) {
-          // Alerting the specific error to help you debug
           alert("Failed to send message: " + JSON.stringify(error));
           btn.disabled = false;
           btn.innerText = "Send Message ✉";
