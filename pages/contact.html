@@ -47,7 +47,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
   (function() {
-      emailjs.init("7i_R2Mt-WIyfIqKgC"); 
+      emailjs.init("abcdefgh"); //give with your id 
   })();
 </script>
   
@@ -292,7 +292,7 @@
       btn.innerText = "Sending...";
       btn.disabled = true;
 
-      emailjs.sendForm('omsml', 'template_8j373jh', this)
+      emailjs.sendForm('abcdefgh', 'abcdefgh', this)
         .then(function() {
           document.getElementById('contactForm').style.display = 'none';
           document.getElementById('formSuccess').style.display = 'block';
