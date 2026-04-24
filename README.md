@@ -2,7 +2,8 @@
   <img src="https://www.wanderlustmagazine.com/wp-content/uploads/2023/09/wanderlust-logo.svg" alt="WanderLust Travel Logo" width="220"/>
 </p>
 
-<h1 align="center">🌍 WanderLust Travel — Official Website</h1>
+<h1 align="center">WanderLust Travel — Official Website</h1>
+<h3 align="center"> Live : https://wanderlusttravelagencies.netlify.app </h3>
 
 <p align="center">
   A fully responsive, multi-page travel agency website built with pure <strong>HTML5</strong>, <strong>CSS3</strong>, and <strong>Vanilla JavaScript</strong>.
@@ -13,7 +14,6 @@
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
   <img src="https://img.shields.io/badge/Responsive-Design-00C9A7?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Pages-5-FF5A5F?style=for-the-badge"/>
 </p>
 
 ---
