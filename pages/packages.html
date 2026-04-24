@@ -52,7 +52,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
   (function() {
-      emailjs.init("7i_R2Mt-WIyfIqKgC"); 
+      emailjs.init("abcdefgh"); 
   })();
 </script>
 
@@ -440,8 +440,8 @@
         message: document.getElementById('bkNotes').value
       };
 
-      // Sending using your Service ID 'omsml' and your Template ID
-      emailjs.send('omsml', 'template_4mw4d59', templateParams)
+     
+      emailjs.send('abcdefgh', 'abcdefgh', templateParams)
         .then(() => {
           this.style.display = 'none';
           document.getElementById('bookSuccess').style.display = 'block';
